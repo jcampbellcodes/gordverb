@@ -2,10 +2,10 @@
 
 //==============================================================================
 gordverbProcessor::gordverbProcessor()
-     : AudioProcessor (BusesProperties()
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                       )
+    : AudioProcessor(
+          BusesProperties()
+              .withInput( "Input", juce::AudioChannelSet::stereo(), true )
+              .withOutput( "Output", juce::AudioChannelSet::stereo(), true ) )
 {
 }
 
@@ -41,8 +41,9 @@ double gordverbProcessor::getTailLengthSeconds() const
 
 int gordverbProcessor::getNumPrograms()
 {
-    return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-                // so this should be at least 1, even if you're not really implementing programs.
+    return 1; // NB: some hosts don't cope very well if you tell them there are
+              // 0 programs, so this should be at least 1, even if you're not
+              // really implementing programs.
 }
 
 int gordverbProcessor::getCurrentProgram()
@@ -50,28 +51,29 @@ int gordverbProcessor::getCurrentProgram()
     return 0;
 }
 
-void gordverbProcessor::setCurrentProgram (int index)
+void gordverbProcessor::setCurrentProgram( int index )
 {
-    juce::ignoreUnused (index);
+    juce::ignoreUnused( index );
 }
 
-const juce::String gordverbProcessor::getProgramName (int index)
+const juce::String gordverbProcessor::getProgramName( int index )
 {
-    juce::ignoreUnused (index);
+    juce::ignoreUnused( index );
     return {};
 }
 
-void gordverbProcessor::changeProgramName (int index, const juce::String& newName)
+void gordverbProcessor::changeProgramName( int index,
+                                           const juce::String& newName )
 {
-    juce::ignoreUnused (index, newName);
+    juce::ignoreUnused( index, newName );
 }
 
 //==============================================================================
-void gordverbProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void gordverbProcessor::prepareToPlay( double sampleRate, int samplesPerBlock )
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    juce::ignoreUnused (sampleRate, samplesPerBlock);
+    juce::ignoreUnused( sampleRate, samplesPerBlock );
 }
 
 void gordverbProcessor::releaseResources()
@@ -80,26 +82,27 @@ void gordverbProcessor::releaseResources()
     // spare memory, etc.
 }
 
-bool gordverbProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool gordverbProcessor::isBusesLayoutSupported(
+    const BusesLayout& layouts ) const
 {
-    if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
+    if ( layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono() &&
+         layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo() )
         return false;
 
     // TODO: Support MISO
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
+    if ( layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet() )
         return false;
 
     return true;
 }
 
-void gordverbProcessor::processBlock (juce::AudioBuffer<float>& buffer,
-                                              juce::MidiBuffer& midiMessages)
+void gordverbProcessor::processBlock( juce::AudioBuffer<float>& buffer,
+                                      juce::MidiBuffer& midiMessages )
 {
-    juce::ignoreUnused (midiMessages);
+    juce::ignoreUnused( midiMessages );
 
     juce::ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels  = getTotalNumInputChannels();
+    auto totalNumInputChannels = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
     // In case we have more outputs than inputs, this code clears any output
@@ -108,8 +111,8 @@ void gordverbProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // This is here to avoid people getting screaming feedback
     // when they first compile a plugin, but obviously you don't need to keep
     // this code if your algorithm always overwrites all the output channels.
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
+    for ( auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i )
+        buffer.clear( i, 0, buffer.getNumSamples() );
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
@@ -117,10 +120,10 @@ void gordverbProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    for ( int channel = 0; channel < totalNumInputChannels; ++channel )
     {
-        auto* channelData = buffer.getWritePointer (channel);
-        juce::ignoreUnused (channelData);
+        auto* channelData = buffer.getWritePointer( channel );
+        juce::ignoreUnused( channelData );
         // ..do something to the data...
     }
 }
@@ -134,23 +137,24 @@ bool gordverbProcessor::hasEditor() const
 juce::AudioProcessorEditor* gordverbProcessor::createEditor()
 {
     // TODO: Custom GUI
-    return new juce::GenericAudioProcessorEditor (*this);
+    return new juce::GenericAudioProcessorEditor( *this );
 }
 
 //==============================================================================
-void gordverbProcessor::getStateInformation (juce::MemoryBlock& destData)
+void gordverbProcessor::getStateInformation( juce::MemoryBlock& destData )
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    juce::ignoreUnused (destData);
+    juce::ignoreUnused( destData );
 }
 
-void gordverbProcessor::setStateInformation (const void* data, int sizeInBytes)
+void gordverbProcessor::setStateInformation( const void* data, int sizeInBytes )
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
-    juce::ignoreUnused (data, sizeInBytes);
+    // You should use this method to restore your parameters from this memory
+    // block, whose contents will have been created by the getStateInformation()
+    // call.
+    juce::ignoreUnused( data, sizeInBytes );
 }
 
 //==============================================================================
