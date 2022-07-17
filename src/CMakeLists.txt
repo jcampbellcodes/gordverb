@@ -3,7 +3,7 @@ set(gordverb_TARGET gordverb)
 project(${gordverb_TARGET} VERSION 0.0.1)
 
 juce_add_plugin(${gordverb_TARGET}
-    COMPANY_NAME Keen Coyote
+    COMPANY_NAME "Keen Coyote"
     IS_SYNTH FALSE
     NEEDS_MIDI_INPUT FALSE
     NEEDS_MIDI_OUTPUT FALSE
@@ -23,10 +23,17 @@ ${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.h
 ${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.cpp
 
     # add standalone fx from Daisy explicitly
-    ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Effects/reverbsc.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Effects/reverbsc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Source/Effects/reverbsc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Source/Effects/reverbsc.cpp
     )
  
+target_include_directories( ${gordverb_TARGET}  
+PUBLIC
+${CMAKE_CURRENT_SOURCE_DIR}
+${CMAKE_CURRENT_SOURCE_DIR}/early_reflections
+${CMAKE_CURRENT_SOURCE_DIR}/late_reflections
+${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Source/Effects)
+
 target_sources(${gordverb_TARGET}
     PRIVATE
         ${SOURCES})
@@ -40,6 +47,7 @@ target_compile_definitions(${gordverb_TARGET}
 target_link_libraries(${gordverb_TARGET}
     PRIVATE
         juce::juce_audio_utils
+        juce::juce_dsp
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

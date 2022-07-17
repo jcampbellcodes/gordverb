@@ -1,6 +1,10 @@
 #pragma once
 
+#include "er_convolution.h"
+#include "lr_costello.h"
+#include "reverb_interface.h"
 #include <juce_audio_processors/juce_audio_processors.h>
+#include <juce_dsp/juce_dsp.h>
 
 //==============================================================================
 class GordverbProcessor : public juce::AudioProcessor
@@ -18,6 +22,8 @@ class GordverbProcessor : public juce::AudioProcessor
 
     void processBlock( juce::AudioBuffer<float>&, juce::MidiBuffer& ) override;
     using AudioProcessor::processBlock;
+
+    void reset() override;
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;
@@ -43,6 +49,10 @@ class GordverbProcessor : public juce::AudioProcessor
     void setStateInformation( const void* data, int sizeInBytes ) override;
 
   private:
+    gv::Reverb<gv::EarlyReflections::Convolution, gv::LateReflections::Costello>
+        mReverb;
+    juce::AudioProcessorValueTreeState mState;
+    juce::dsp::DryWetMixer<float> mDryWetMixer{ 10 };
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( GordverbProcessor )
 };
