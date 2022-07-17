@@ -1,7 +1,7 @@
 #include "gordverb.h"
 
 //==============================================================================
-gordverbProcessor::gordverbProcessor()
+GordverbProcessor::GordverbProcessor()
     : AudioProcessor(
           BusesProperties()
               .withInput( "Input", juce::AudioChannelSet::stereo(), true )
@@ -9,80 +9,80 @@ gordverbProcessor::gordverbProcessor()
 {
 }
 
-gordverbProcessor::~gordverbProcessor()
+GordverbProcessor::~GordverbProcessor()
 {
 }
 
 //==============================================================================
-const juce::String gordverbProcessor::getName() const
+const juce::String GordverbProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool gordverbProcessor::acceptsMidi() const
+bool GordverbProcessor::acceptsMidi() const
 {
     return false;
 }
 
-bool gordverbProcessor::producesMidi() const
+bool GordverbProcessor::producesMidi() const
 {
     return false;
 }
 
-bool gordverbProcessor::isMidiEffect() const
+bool GordverbProcessor::isMidiEffect() const
 {
     return false;
 }
 
-double gordverbProcessor::getTailLengthSeconds() const
+double GordverbProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int gordverbProcessor::getNumPrograms()
+int GordverbProcessor::getNumPrograms()
 {
     return 1; // NB: some hosts don't cope very well if you tell them there are
               // 0 programs, so this should be at least 1, even if you're not
               // really implementing programs.
 }
 
-int gordverbProcessor::getCurrentProgram()
+int GordverbProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void gordverbProcessor::setCurrentProgram( int index )
+void GordverbProcessor::setCurrentProgram( int index )
 {
     juce::ignoreUnused( index );
 }
 
-const juce::String gordverbProcessor::getProgramName( int index )
+const juce::String GordverbProcessor::getProgramName( int index )
 {
     juce::ignoreUnused( index );
     return {};
 }
 
-void gordverbProcessor::changeProgramName( int index,
+void GordverbProcessor::changeProgramName( int index,
                                            const juce::String& newName )
 {
     juce::ignoreUnused( index, newName );
 }
 
 //==============================================================================
-void gordverbProcessor::prepareToPlay( double sampleRate, int samplesPerBlock )
+void GordverbProcessor::prepareToPlay( double sampleRate, int samplesPerBlock )
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     juce::ignoreUnused( sampleRate, samplesPerBlock );
 }
 
-void gordverbProcessor::releaseResources()
+void GordverbProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
-bool gordverbProcessor::isBusesLayoutSupported(
+bool GordverbProcessor::isBusesLayoutSupported(
     const BusesLayout& layouts ) const
 {
     if ( layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono() &&
@@ -96,7 +96,7 @@ bool gordverbProcessor::isBusesLayoutSupported(
     return true;
 }
 
-void gordverbProcessor::processBlock( juce::AudioBuffer<float>& buffer,
+void GordverbProcessor::processBlock( juce::AudioBuffer<float>& buffer,
                                       juce::MidiBuffer& midiMessages )
 {
     juce::ignoreUnused( midiMessages );
@@ -129,19 +129,19 @@ void gordverbProcessor::processBlock( juce::AudioBuffer<float>& buffer,
 }
 
 //==============================================================================
-bool gordverbProcessor::hasEditor() const
+bool GordverbProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* gordverbProcessor::createEditor()
+juce::AudioProcessorEditor* GordverbProcessor::createEditor()
 {
     // TODO: Custom GUI
     return new juce::GenericAudioProcessorEditor( *this );
 }
 
 //==============================================================================
-void gordverbProcessor::getStateInformation( juce::MemoryBlock& destData )
+void GordverbProcessor::getStateInformation( juce::MemoryBlock& destData )
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
@@ -149,7 +149,7 @@ void gordverbProcessor::getStateInformation( juce::MemoryBlock& destData )
     juce::ignoreUnused( destData );
 }
 
-void gordverbProcessor::setStateInformation( const void* data, int sizeInBytes )
+void GordverbProcessor::setStateInformation( const void* data, int sizeInBytes )
 {
     // You should use this method to restore your parameters from this memory
     // block, whose contents will have been created by the getStateInformation()
@@ -161,5 +161,5 @@ void gordverbProcessor::setStateInformation( const void* data, int sizeInBytes )
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new gordverbProcessor();
+    return new GordverbProcessor();
 }
