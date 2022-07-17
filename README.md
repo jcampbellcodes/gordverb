@@ -1,4 +1,4 @@
-# adverb
+# gordverb
 
 Simple free open-source reverb. Meant to be used to swap out early/late
 reflection algorithms and compare them in performance and sound quality.
@@ -10,7 +10,7 @@ reflection algorithms and compare them in performance and sound quality.
 # How to build
 
 ```
-cd /to/adverb/root
+cd /to/gordverb/root
 cmake -B build
 cmake --build build
 ```

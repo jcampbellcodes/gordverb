@@ -1,4 +1,4 @@
-namespace adverb
+namespace gordverb
 {
     template <typename EarlyReflections, typename LateReflections>
     class ReverbInterface

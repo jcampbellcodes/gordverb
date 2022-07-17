@@ -3,12 +3,12 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 
 //==============================================================================
-class AdverbProcessor  : public juce::AudioProcessor
+class gordverbProcessor  : public juce::AudioProcessor
 {
 public:
     //==============================================================================
-    AdverbProcessor();
-    ~AdverbProcessor() override;
+    gordverbProcessor();
+    ~gordverbProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -44,5 +44,5 @@ public:
 
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AdverbProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (gordverbProcessor)
 };

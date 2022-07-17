@@ -1,8 +1,8 @@
-set(ADVERB_TARGET Adverb)
+set(gordverb_TARGET gordverb)
 
-project(${ADVERB_TARGET} VERSION 0.0.1)
+project(${gordverb_TARGET} VERSION 0.0.1)
 
-juce_add_plugin(${ADVERB_TARGET}
+juce_add_plugin(${gordverb_TARGET}
     COMPANY_NAME Keen Coyote
     IS_SYNTH FALSE
     NEEDS_MIDI_INPUT FALSE
@@ -12,7 +12,7 @@ juce_add_plugin(${ADVERB_TARGET}
     PLUGIN_MANUFACTURER_CODE Keen
     PLUGIN_CODE GorD                        
     FORMATS AU VST3 Standalone # Other valid formats are: AAX Unity VST AU AUv3
-    PRODUCT_NAME "Adverb")
+    PRODUCT_NAME "gordverb")
 
 file(GLOB SOURCES 
 ${CMAKE_CURRENT_SOURCE_DIR}/*.h     
@@ -26,19 +26,18 @@ ${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Effects/reverbsc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Effects/reverbsc.cpp
     )
-
-    message ( SOURCES: ${SOURCES})    
-target_sources(${ADVERB_TARGET}
+ 
+target_sources(${gordverb_TARGET}
     PRIVATE
         ${SOURCES})
 
-target_compile_definitions(${ADVERB_TARGET}
+target_compile_definitions(${gordverb_TARGET}
     PUBLIC
         JUCE_WEB_BROWSER=0
         JUCE_USE_CURL=0
         JUCE_VST3_CAN_REPLACE_VST2=0)
 
-target_link_libraries(${ADVERB_TARGET}
+target_link_libraries(${gordverb_TARGET}
     PRIVATE
         juce::juce_audio_utils
     PUBLIC

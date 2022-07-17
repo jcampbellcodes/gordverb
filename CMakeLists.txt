@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(Adverb VERSION 0.0.1)
+project(gordverb VERSION 0.0.1)
 
 # build universal on macOS
 set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")

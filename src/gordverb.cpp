@@ -1,7 +1,7 @@
-#include "adverb.h"
+#include "gordverb.h"
 
 //==============================================================================
-AdverbProcessor::AdverbProcessor()
+gordverbProcessor::gordverbProcessor()
      : AudioProcessor (BusesProperties()
                        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
@@ -9,78 +9,78 @@ AdverbProcessor::AdverbProcessor()
 {
 }
 
-AdverbProcessor::~AdverbProcessor()
+gordverbProcessor::~gordverbProcessor()
 {
 }
 
 //==============================================================================
-const juce::String AdverbProcessor::getName() const
+const juce::String gordverbProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool AdverbProcessor::acceptsMidi() const
+bool gordverbProcessor::acceptsMidi() const
 {
     return false;
 }
 
-bool AdverbProcessor::producesMidi() const
+bool gordverbProcessor::producesMidi() const
 {
     return false;
 }
 
-bool AdverbProcessor::isMidiEffect() const
+bool gordverbProcessor::isMidiEffect() const
 {
     return false;
 }
 
-double AdverbProcessor::getTailLengthSeconds() const
+double gordverbProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int AdverbProcessor::getNumPrograms()
+int gordverbProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int AdverbProcessor::getCurrentProgram()
+int gordverbProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void AdverbProcessor::setCurrentProgram (int index)
+void gordverbProcessor::setCurrentProgram (int index)
 {
     juce::ignoreUnused (index);
 }
 
-const juce::String AdverbProcessor::getProgramName (int index)
+const juce::String gordverbProcessor::getProgramName (int index)
 {
     juce::ignoreUnused (index);
     return {};
 }
 
-void AdverbProcessor::changeProgramName (int index, const juce::String& newName)
+void gordverbProcessor::changeProgramName (int index, const juce::String& newName)
 {
     juce::ignoreUnused (index, newName);
 }
 
 //==============================================================================
-void AdverbProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void gordverbProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     juce::ignoreUnused (sampleRate, samplesPerBlock);
 }
 
-void AdverbProcessor::releaseResources()
+void gordverbProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
-bool AdverbProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool gordverbProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
     if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
      && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
@@ -93,7 +93,7 @@ bool AdverbProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
     return true;
 }
 
-void AdverbProcessor::processBlock (juce::AudioBuffer<float>& buffer,
+void gordverbProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                               juce::MidiBuffer& midiMessages)
 {
     juce::ignoreUnused (midiMessages);
@@ -126,19 +126,19 @@ void AdverbProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 }
 
 //==============================================================================
-bool AdverbProcessor::hasEditor() const
+bool gordverbProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* AdverbProcessor::createEditor()
+juce::AudioProcessorEditor* gordverbProcessor::createEditor()
 {
     // TODO: Custom GUI
     return new juce::GenericAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void AdverbProcessor::getStateInformation (juce::MemoryBlock& destData)
+void gordverbProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
@@ -146,7 +146,7 @@ void AdverbProcessor::getStateInformation (juce::MemoryBlock& destData)
     juce::ignoreUnused (destData);
 }
 
-void AdverbProcessor::setStateInformation (const void* data, int sizeInBytes)
+void gordverbProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -157,5 +157,5 @@ void AdverbProcessor::setStateInformation (const void* data, int sizeInBytes)
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new AdverbProcessor();
+    return new gordverbProcessor();
 }
