@@ -1,0 +1,9 @@
+[submodule "submodules/JUCE"]
+	path = submodules/JUCE
+	url = https://github.com/juce-framework/JUCE.git
+[submodule "submodules/DaisySP"]
+	path = submodules/DaisySP
+	url = https://github.com/electro-smith/DaisySP.git
+[submodule "submodules/Catch2"]
+	path = submodules/Catch2
+	url = https://github.com/catchorg/Catch2.git
