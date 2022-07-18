@@ -2,6 +2,8 @@ set(gordverb_TARGET gordverb)
 
 project(${gordverb_TARGET} VERSION 0.0.1)
 
+set(BINARY_TARGET_NAME GVBinaryData)
+
 juce_add_plugin(${gordverb_TARGET}
     COMPANY_NAME "Keen Coyote"
     IS_SYNTH FALSE
@@ -14,13 +16,19 @@ juce_add_plugin(${gordverb_TARGET}
     FORMATS AU VST3 Standalone # Other valid formats are: AAX Unity VST AU AUv3
     PRODUCT_NAME "gordverb")
 
+
+file( GLOB BINARY_RESOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/../resources/**/*.wav
+)
+
+
 file(GLOB SOURCES 
-${CMAKE_CURRENT_SOURCE_DIR}/*.h     
-${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/early_reflections/*.h     
-${CMAKE_CURRENT_SOURCE_DIR}/early_reflections/*.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.h     
-${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.h     
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/early_reflections/*.h     
+    ${CMAKE_CURRENT_SOURCE_DIR}/early_reflections/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.h     
+    ${CMAKE_CURRENT_SOURCE_DIR}/late_reflections/*.cpp
 
     # add standalone fx from Daisy explicitly
     ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/DaisySP/Source/Effects/reverbsc.h
@@ -48,6 +56,7 @@ target_link_libraries(${gordverb_TARGET}
     PRIVATE
         juce::juce_audio_utils
         juce::juce_dsp
+        ${BINARY_TARGET_NAME}
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

@@ -8,6 +8,10 @@ namespace gv
 {
 namespace LateReflections
 {
+    /**
+     * @brief A wrapper around the DaisySP ReverbSC from CSound. (originally
+     * written by Sean Costello in the 90s)
+     */
     class Costello
     {
       public:
@@ -17,6 +21,11 @@ namespace LateReflections
 
         void processBlock( juce::AudioBuffer<float>& inOutBuffer );
         void reset();
+
+        int getLatency()
+        {
+            return 0;
+        }
 
       private:
         daisysp::ReverbSc mReverb;

@@ -12,7 +12,13 @@ GordverbProcessor::GordverbProcessor()
                     NormalisableRange<float>( 0.0f, 1.0f ), 0.9f ),
                 std::make_unique<AudioParameterFloat>(
                     ParameterID{ "wet_dry", 1 }, "Wet/Dry",
-                    NormalisableRange<float>( 0.0f, 1.0f ), 0.5f ) } )
+                    NormalisableRange<float>( 0.0f, 1.0f ), 0.5f ),
+                std::make_unique<AudioParameterBool>(
+                    ParameterID{ "enable_er", 1 }, "Enable Early Reflections",
+                    true ),
+                std::make_unique<AudioParameterBool>(
+                    ParameterID{ "enable_lr", 1 }, "Enable Late Reflections",
+                    true ) } )
 {
 }
 
@@ -84,6 +90,8 @@ void GordverbProcessor::prepareToPlay( double sampleRate, int samplesPerBlock )
         juce::jmax( getTotalNumInputChannels(), getTotalNumOutputChannels() );
     mDryWetMixer.prepare(
         { sampleRate, (juce::uint32)samplesPerBlock, (juce::uint32)channels } );
+
+    this->setLatencySamples( mReverb.getLatency() );
 }
 
 void GordverbProcessor::releaseResources()
@@ -116,10 +124,14 @@ void GordverbProcessor::processBlock( juce::AudioBuffer<float>& buffer,
     auto wetParamValue = mState.getParameter( "wet_dry" )->getValue();
     mDryWetMixer.setWetMixProportion( wetParamValue );
 
+    auto enableER = mState.getParameter( "enable_er" )->getValue();
+    mReverb.enableEarlyReflections( enableER );
+    auto enableLR = mState.getParameter( "enable_lr" )->getValue();
+    mReverb.enableLateReflections( enableLR );
+
     auto reverbAmtValue = mState.getParameter( "reverb_amt" )->getValue();
     mReverb.setReverbAmount( reverbAmtValue );
-
-    // TODO set latency
+    mDryWetMixer.setWetLatency( mReverb.getLatency() );
     auto inputBlock = this->getBusBuffer( buffer, true, 0 );
     mDryWetMixer.pushDrySamples( inputBlock );
 

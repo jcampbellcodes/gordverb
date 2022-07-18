@@ -1,0 +1,17 @@
+resources/b-format/r4_rir_bformat.wav filter=lfs diff=lfs merge=lfs -text
+resources/b-format/r5_rir_bformat.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/Assets/cassette_recorder.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/extras/AudioPluginHost/Builds/Android/app/src/main/assets/reverb_ir.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/DemoRunner/Builds/Android/app/src/main/assets/cassette_recorder.wav filter=lfs diff=lfs merge=lfs -text
+resources/b-format/r1_rir_bformat.wav filter=lfs diff=lfs merge=lfs -text
+resources/b-format/r2_rir_bformat.wav filter=lfs diff=lfs merge=lfs -text
+resources/b-format/r3_rir_bformat.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/Assets/cello.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/Assets/guitar_amp.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/Assets/reverb_ir.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/DemoRunner/Builds/Android/app/src/main/assets/guitar_amp.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/extras/AudioPluginHost/Builds/Android/app/src/main/assets/guitar_amp.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/DemoRunner/Builds/Android/app/src/main/assets/cello.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/examples/DemoRunner/Builds/Android/app/src/main/assets/reverb_ir.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/extras/AudioPluginHost/Builds/Android/app/src/main/assets/cassette_recorder.wav filter=lfs diff=lfs merge=lfs -text
+submodules/JUCE/extras/AudioPluginHost/Builds/Android/app/src/main/assets/cello.wav filter=lfs diff=lfs merge=lfs -text
