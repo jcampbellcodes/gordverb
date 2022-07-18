@@ -9,8 +9,8 @@ Params:
 - Enable early reflections
 - Enable late reflections
 
-Code is structured in such a way that early and late reflections algos can be swapped
-out easily as compile time.
+Code is structured in such a way that early and late reflections algorithms can be swapped
+out easily at compile time.
 
 # How to Clone
 
