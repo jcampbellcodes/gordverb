@@ -12,6 +12,8 @@ Params:
 Code is structured in such a way that early and late reflections algorithms can be swapped
 out easily at compile time.
 
+It's named after my dog, Gordon, like most things that I don't want to actually spend time naming. :)
+
 # How to Clone
 
 The submodules included in the repo are needed to build.
